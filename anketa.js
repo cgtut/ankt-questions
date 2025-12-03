@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // загрузка questions.json
-    const QUESTIONS_URL = 'https://raw.githubusercontent.com/cgtut/ankt-questions/refs/heads/main/questions.json';
+    const QUESTIONS_URL = 'questions.json';
     fetch(QUESTIONS_URL)
       .then(res => res.json())
       .then(data => {
@@ -207,4 +207,5 @@ document.addEventListener('DOMContentLoaded', () => {
     nextQuestionBtn.addEventListener('click', handleNextQuestion);
     checkBtn.addEventListener('click', showResults);
     restartBtn.addEventListener('click', startTest);
+
   });
