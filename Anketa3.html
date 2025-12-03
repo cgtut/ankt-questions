@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Анкетирование по охранной деятельности</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-wrapper">
+    <div class="card">
+      <h1>Анкетирование по охране</h1>
+      <p class="subtitle">Ответьте на вопросы, выбирая наиболее точные варианты.</p>
+
+      <div class="progress-labels">
+        <span id="stepLabel">Вопрос 1 из 20</span>
+        <span id="modeLabel" class="badge">
+          <span class="badge-dot"></span>
+          Один правильный ответ
+        </span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-bar-fill" id="progressFill"></div>
+      </div>
+
+      <div id="testContainer" class="question-container"></div>
+
+      <div class="controls">
+        <button class="btn btn-secondary" id="restartBtn" style="display:none;">Сначала</button>
+
+        <div style="display:flex;gap:8px;margin-left:auto;">
+          <button class="btn btn-secondary" id="checkBtn" style="display:none;">Показать результат</button>
+          <button class="btn btn-primary" id="nextQuestionBtn" style="display:none;">
+            Следующий вопрос →
+          </button>
+          <button class="btn btn-primary" id="startTestBtn">
+            Начать анкету
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="anketa.js"></script>
+
+</body>
+</html>

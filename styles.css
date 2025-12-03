@@ -1,0 +1,372 @@
+ * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #1f4e79 0, #0b1726 45%, #050810 100%);
+      color: #f5f7fb;
+      padding: 20px;
+    }
+
+    .page-wrapper {
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .card {
+      background: rgba(12, 22, 40, 0.96);
+      border-radius: 18px;
+      box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.02);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Декоративные элементы */
+    .card::before,
+    .card::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      opacity: 0.32;
+      filter: blur(14px);
+      z-index: -1;
+      animation: float 12s ease-in-out infinite alternate;
+    }
+
+    .card::before {
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, #3fb1ff, transparent 60%);
+      top: -40px;
+      right: -60px;
+    }
+
+    .card::after {
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, #9b5cff, transparent 60%);
+      bottom: -60px;
+      left: -40px;
+      animation-direction: alternate-reverse;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+      100% {
+        transform: translate3d(10px, -8px, 0);
+      }
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 14px;
+      opacity: 0.8;
+      margin-bottom: 22px;
+    }
+
+    .progress-bar {
+      position: relative;
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #3fb1ff, #9b5cff);
+      transition: width 0.4s ease;
+    }
+
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      opacity: 0.8;
+      margin-bottom: 14px;
+    }
+
+    .question-container {
+      min-height: 140px;
+      animation: fadeInUp 0.4s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .question-title {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .answers {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .answer-option {
+      position: relative;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(18, 30, 52, 0.9);
+      padding: 10px 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.12s ease,
+        box-shadow 0.12s ease;
+    }
+
+    .answer-option:hover {
+      border-color: rgba(63, 177, 255, 0.7);
+      box-shadow: 0 0 0 1px rgba(63, 177, 255, 0.25);
+      transform: translateY(-1px);
+      background: rgba(24, 42, 76, 0.95);
+    }
+
+    .answer-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .custom-check {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .custom-check::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: transparent;
+      transition: background 0.2s ease;
+    }
+
+    .answer-option.multiple .custom-check {
+      border-radius: 6px;
+    }
+
+    .answer-option.multiple .custom-check::after {
+      border-radius: 3px;
+    }
+
+    .answer-option input:checked + .custom-check {
+      border-color: #3fb1ff;
+      background: radial-gradient(circle at 30% 30%, #ffffff, #3fb1ff);
+      box-shadow: 0 0 0 3px rgba(63, 177, 255, 0.25);
+    }
+
+    .answer-option input:checked + .custom-check::after {
+      background: #050810;
+    }
+
+    .answer-text {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 22px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 9px 20px;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition:
+        background 0.18s ease,
+        box-shadow 0.18s ease,
+        transform 0.1s ease,
+        color 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #3fb1ff, #9b5cff);
+      color: #050810;
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.45);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 12px 22px rgba(0, 0, 0, 0.6);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #f5f7fb;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: default;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .result {
+      margin-top: 18px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(8, 24, 49, 0.85);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(63, 177, 255, 0.12);
+      color: #9bd5ff;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #3fb1ff;
+      box-shadow: 0 0 6px #3fb1ff;
+    }
+
+    .badge.warn {
+      background: rgba(255, 188, 87, 0.12);
+      color: #ffd28a;
+    }
+
+    .badge.warn .badge-dot {
+      background: #ffbc57;
+      box-shadow: 0 0 6px #ffbc57;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 20px 16px 18px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      .question-title {
+        font-size: 16px;
+      }
+    }
+
+    /* Дополнительный медиазапрос для устройств с меньшей шириной (например, смартфонов) */
+    @media (max-width: 480px) {
+      .card {
+        padding: 18px 12px 16px; /* Уменьшение внутренних отступов карточки */
+      }
+
+      h1 {
+        font-size: 18px; /* Уменьшение размера заголовка */
+      }
+
+      .subtitle {
+        font-size: 13px; /* Уменьшение размера подзаголовка */
+        margin-bottom: 18px;
+      }
+
+      .question-title {
+        font-size: 15px; /* Уменьшение размера текста вопроса */
+      }
+      
+      .answer-option {
+        padding: 10px; /* Уменьшение отступов у вариантов ответа */
+      }
+      
+      .answer-text {
+        font-size: 13px; /* Уменьшение размера текста ответа */
+      }
+
+      .controls {
+        flex-direction: column; /* Размещение кнопок управления в столбец */
+        gap: 12px;
+      }
+
+      .btn {
+        width: 100%; /* Растягивание кнопок на всю ширину */
+      }
+
+      .btn-secondary {
+        order: 1; /* Кнопка "Назад" отображается первой */
+      }
+    }
+
+    /* Медиазапрос для альбомной ориентации мобильных устройств */
+    @media (max-width: 800px) and (orientation: landscape) {
+      .page-wrapper {
+        padding: 15px;
+      }
+    }
