@@ -281,7 +281,7 @@
     }
 
     .badge {
-      display: inline-flex;
+      display: none;
       align-items: center;
       gap: 6px;
       font-size: 12px;
@@ -369,4 +369,5 @@
       .page-wrapper {
         padding: 15px;
       }
+
     }
