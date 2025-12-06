@@ -31,10 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         stepLabel.textContent = `Вопрос ${currentQuestionIndex + 1} из ${testData.length}`;
         progressFill.style.width = `${((currentQuestionIndex + 1) / testData.length) * 100}%`;
-        /*modeLabel.textContent = currentQuestion.type === "single"
+        modeLabel.textContent = currentQuestion.type === "single"
           ? "Один правильный ответ"
           : "Несколько правильных ответов";
-        modeLabel.className = currentQuestion.type === "single" ? "badge" : "badge warn";*/
+        modeLabel.className = currentQuestion.type === "single" ? "badge" : "badge warn";
         modeLabel.innerHTML = `<span class="badge-dot"></span>${modeLabel.textContent}`;
 
         testContainer.innerHTML = `
@@ -209,4 +209,5 @@ document.addEventListener('DOMContentLoaded', () => {
     restartBtn.addEventListener('click', startTest);
 
   });
+
 
