@@ -230,5 +230,8 @@ document.addEventListener('DOMContentLoaded', () => {
     startFullTestBtn.addEventListener('click', startFullTest);
     nextQuestionBtn.addEventListener('click', handleNextQuestion);
     checkBtn.addEventListener('click', showResults);
-    restartBtn.addEventListener('click', startTest);
+    restartBtn.addEventListener('click',function () {
+       window.location.reload()
+    });
   });
+
