@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextQuestionBtn = document.getElementById('nextQuestionBtn');
     const checkBtn = document.getElementById('checkBtn');
     const restartBtn = document.getElementById('restartBtn');
+    const startFullTestBtn = document.getElementById('startFullTestBtn');
 
     function shuffleArray(array) {
       const arr = array.slice();
@@ -31,9 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         stepLabel.textContent = `Вопрос ${currentQuestionIndex + 1} из ${testData.length}`;
         progressFill.style.width = `${((currentQuestionIndex + 1) / testData.length) * 100}%`;
-        modeLabel.textContent = currentQuestion.type === "single"
+         modeLabel.textContent = currentQuestion.type === "single"
           ? "Один правильный ответ"
-          : "Несколько правильных ответов";
+          : "Несколько правильных ответов"; 
         modeLabel.className = currentQuestion.type === "single" ? "badge" : "badge warn";
         modeLabel.innerHTML = `<span class="badge-dot"></span>${modeLabel.textContent}`;
 
@@ -186,8 +187,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // каждый запуск берём случайные 20
       testData = shuffleArray(allTestData).slice(0, 20);
+      startFullTestBtn.style.display = 'none';
       renderQuestion();
+
     }
+
+    function startFullTest() {
+  testData = shuffleArray(allTestData); // ВСЕ вопросы, без .slice(0, 20)
+  currentQuestionIndex = 0;
+  userAnswers = {};
+  correctAnswersCount = 0;
+  
+  stepLabel.textContent = `Вопрос ${currentQuestionIndex + 1} из ${testData.length}`;
+  modeLabel.textContent = 'Полный тест';
+  modeLabel.style.display = 'inline-flex';
+  
+  startTestBtn.style.display = 'none';
+  startFullTestBtn.style.display = 'none';
+  nextQuestionBtn.style.display = 'inline-flex';
+  checkBtn.style.display = 'none';
+  restartBtn.style.display = 'none';
+  
+  testContainer.innerHTML = ''; // Очистка
+  renderQuestion();
+}
 
     // загрузка questions.json
     const QUESTIONS_URL = 'questions.json';
@@ -204,10 +227,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
     startTestBtn.addEventListener('click', startTest);
+    startFullTestBtn.addEventListener('click', startFullTest);
     nextQuestionBtn.addEventListener('click', handleNextQuestion);
     checkBtn.addEventListener('click', showResults);
     restartBtn.addEventListener('click', startTest);
-
   });
-
-
